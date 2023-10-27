@@ -35,6 +35,9 @@ $courseDao = new CourseDAO();
                 CRUD PHP POO
             </a>
         </div>
+        <form action="../controller/UserController.php" method="post">
+            <button class="btn btn-primary" type="submit" name="Logout">Logout</button>
+        </form>
     </nav>
     <div class="container">
         <form action="app/controller/CourseController.php" method="POST">

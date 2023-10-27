@@ -12,7 +12,7 @@ class UserDAO {
       $p_sql = Connection::getConnection()->prepare($sql);
       $p_sql->bindValue(":name", $user->getName());
       $p_sql->bindValue(":username", $user->getUsername());
-      $p_sql->bindValue(":password", base64_encode($user->getPassword()));
+      $p_sql->bindValue(":password", password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
       return $p_sql->execute();
       
@@ -51,7 +51,7 @@ class UserDAO {
       $p_sql->bindValue(":name", $user->getName());
       $p_sql->bindValue(":username", $user->getUsername());
       if(empty($user->getPassword())){
-        $p_sql->bindValue(":password", base64_encode($user->getPassword()));
+        $p_sql->bindValue(":password", password_hash($user->getPassword(), PASSWORD_DEFAULT));
       }
       $p_sql->bindValue(":id", $user->getId());
       $ee = $p_sql->execute();
@@ -67,6 +67,19 @@ class UserDAO {
       $p_sql->bindValue(":id", $user->getId());
 
       return $p_sql->execute();
+    } catch (Exception $e) {
+      print "error $e";
+    }
+  }
+
+  public function findUser($username){
+    try {
+      $sql = "SELECT id, password FROM user WHERE username = :username";
+      $p_sql = Connection::getConnection()->prepare($sql);
+      $p_sql->bindValue(":username", $username);
+      $p_sql->execute();
+      return $p_sql->fetch(PDO::FETCH_ASSOC);
+      
     } catch (Exception $e) {
       print "error $e";
     }

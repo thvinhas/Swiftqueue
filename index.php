@@ -1,12 +1,9 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-  </head>
-  <body>
-  <a href="./app/views/course.php"><button class="btn btn-primary">course</button></a>
-  <a href="./app/views/user.php"><button class="btn btn-primary">user</button></a>
-  </body>
-</html>
+<?php
+// var_dump($_SESSION);exit;
+  // header('Location: ./app/views/course.php');
+// If the user is not logged in redirect to the login page...
+if (isset($_SESSION['loggedin'])) {
+	header('Location: ./app/views/course.php');
+}else {
+  header('Location: ./app/views/login.php');
+}
