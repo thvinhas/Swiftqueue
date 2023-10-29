@@ -74,7 +74,7 @@ class UserDAO {
 
   public function findUser($username){
     try {
-      $sql = "SELECT id, password FROM user WHERE username = :username";
+      $sql = "SELECT id, name, password FROM user WHERE username = :username";
       $p_sql = Connection::getConnection()->prepare($sql);
       $p_sql->bindValue(":username", $username);
       $p_sql->execute();

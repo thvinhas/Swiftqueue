@@ -1,30 +1,38 @@
+<?php 
+session_start();
+include_once '../../libs/helpers.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+	<title><?= $title ?? 'Home' ?></title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="../public/css/icomoon/styles.min.css" rel="stylesheet" type="text/css">
-	<link href="../public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="../public/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="../public/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="../public/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="../public/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="../../public/css/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+	<link href="../../public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="../../public/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+	<link href="../../public/css/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="../../public/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="../../public/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="../../public/css/style.css" rel="stylesheet" type="text/css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="../public/js/jquery.min.js"></script>
-	<script src="../public/js/bootstrap.bundle.min.js"></script>
-	<script src="../public/js/blockui.min.js"></script>
-	<script src="../public/js/datatables.min.js"></script>
+	<script src="../../public/js/jquery.min.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+	<script src="../../public/js/blockui.min.js"></script>
+	<script src="../../public/js/datatables.min.js"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="../public/js/app.js"></script>
+	<script src="../../public/js/app.js"></script>
+	<script src="../../public/js/components_modals.js"></script>
 	<!-- /theme JS files -->
 
 </head>
@@ -33,11 +41,6 @@
 
 	<!-- Main navbar -->
 	<div class="navbar navbar-expand-md navbar-dark">
-		<div class="navbar-brand">
-			<a href="../full/index.html" class="d-inline-block">
-				<img src="../public/images/dedalus.jpeg" alt="">
-			</a>
-		</div>
 
 		<div class="d-md-none">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
@@ -60,7 +63,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown dropdown-user">
 					<a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
-						<span>Victoria</span>
+						<span>Hello, <?= $_SESSION['name']; ?></span>
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-right">
@@ -132,18 +135,6 @@
 
 		<!-- Main content -->
 		<div class="content-wrapper">
-
-			<!-- Page header -->
-			<div class="page-header page-header-light">
-				<div class="page-header-content header-elements-md-inline">
-					<div class="page-title d-flex">
-						<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Starters</span> - 1 Sidebar</h4>
-						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-					</div>
-				</div>
-			</div>
-			<!-- /page header -->
-
 
 			<!-- Content area -->
 			<div class="content">

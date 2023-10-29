@@ -1,9 +1,7 @@
 <?php
-// var_dump($_SESSION);exit;
-  // header('Location: ./app/views/course.php');
-// If the user is not logged in redirect to the login page...
+include_once __DIR__.'../libs/helpers.php';
+
 if (isset($_SESSION['loggedin'])) {
-	header('Location: ./app/views/course.php');
+  view('course.php', ['title' => 'Couse']);
 }else {
-  header('Location: ./app/views/login.php');
 }

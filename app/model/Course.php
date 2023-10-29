@@ -5,6 +5,7 @@ class Course
   private $name;
   private $startDate;
   private $endDate;
+  private $time;
   private $status;
 
   public function getId() {
@@ -43,6 +44,16 @@ class Course
   public function setEndDate($endDate)
   {
     $this->endDate = $endDate;
+  }
+
+  public function getTime()
+  {
+    return $this->time;
+  }
+
+  public function setTime($time)
+  {
+    $this->time = $time;
   }
 
   public function getStatus()

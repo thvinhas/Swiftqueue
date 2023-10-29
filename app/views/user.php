@@ -4,12 +4,12 @@ include_once '../dao/UserDAO.php';
 
 $user = new User();
 $userDao = new UserDAO();
-include_once './includes/header.php';
+include_once './inc/header.php';
 ?>
 
 <div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Form</h5>
+        <h5 class="card-title">Add User</h5>
         <div class="header-elements">
             <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>
@@ -17,34 +17,33 @@ include_once './includes/header.php';
         </div>
     </div>
     <div class="card-body">
-        <form action="../controller/UserController.php" method="POST">
-        <div class="row">
-            <div class="col-md-4">
-                <label>Name</label>
-                <input type="text" name="name" value="" autofocus class="form-control" require />
-            </div>
+        <form action="../controller/UserController.php" class="form" method="POST">
+            <div class="row">
+                <div class="col-md-5">
+                    <label>Name</label>
+                    <input type="text" name="name" value="" autofocus class="form-control" require />
+                </div>
 
-            <div class="col-md-3">
-                <label>Username</label>
-                <input type="text" name="username" value="" class="form-control" require />
-            </div>
+                <div class="col-md-3">
+                    <label>Username</label>
+                    <input type="text" name="username" value="" class="form-control" require />
+                </div>
 
-            <div class="col-md-3">
-                <label>Password</label>
-                <input type="password" name="password" value="" class="form-control" require />
-            </div>
+                <div class="col-md-3">
+                    <label>Password</label>
+                    <input type="password" name="password" value="" class="form-control" require />
+                </div>
 
-            <div class="col-md-2">
-                <br>
-                <button type="submit" class="btn btn-primary" name="create">Submit form <i class="icon-paperplane ml-2"></i></button>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" name="create">Submit <i class="icon-paperplane ml-2"></i></button>
+                </div>
             </div>
-        </div>
         </form>
     </div>
 </div>
 <div class="card">
-<div class="card-header header-elements-inline">
-        <h5 class="card-title">Table</h5>
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">All User</h5>
         <div class="header-elements">
             <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>
@@ -55,10 +54,10 @@ include_once './includes/header.php';
         <table class="table datatable-basic">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Username</th>
-                    <th>action</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,51 +67,48 @@ include_once './includes/header.php';
                         <td><?= $user->getName() ?></td>
                         <td><?= $user->getUsername() ?></td>
                         <td class="text-center">
-                            <button class="btn  btn-warning btn-sm" data-toggle="modal" data-target="#editar><?= $user->getId() ?>">
-                                Editar
+                            <button class="btn  btn-primary btn-sm" data-toggle="modal" data-target="#edit<?= $user->getId() ?>">
+                            Edit
                             </button>
-                            <a href="app/controller/UserController.php?del=<?= $user->getId() ?>">
-                                <button class="btn  btn-danger btn-sm" type="button">Excluir</button>
+                            <a href="../controller/UserController.php?del=<?= $user->getId() ?>">
+                                <button class="btn  btn-danger btn-sm " type="button">Delete</button>
                             </a>
                         </td>
                     </tr>
                     <!-- Modal -->
-                    <div class="modal fade" id="editar><?= $user->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="edit<?= $user->getId() ?>">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                    <form action="../controller/UserController.php" method="POST">
+                                <form action="../controller/UserController.php" class="form" method="POST">
+                                    <div class="modal-body">
+                                    <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <label>Name</label>
                                                 <input type="text" name="name" value="<?= $user->getName() ?>" class="form-control" require />
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-md-3">
                                                 <label>Username</label>
                                                 <input type="text" name="username" value="<?= $user->getUsername() ?>" class="form-control" require />
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-md-3">
                                                 <label>Password</label>
                                                 <input type="password" name="password" class="form-control" require />
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-md-2">
                                                 <br>
                                                 <input type="hidden" name="id" value="<?= $user->getId() ?>" />
                                                 <button class="btn btn-primary" type="submit" name="edit">Update</button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
 
                             </div>
                         </div>
@@ -125,4 +121,4 @@ include_once './includes/header.php';
 </div>
 
 <?php
-include_once './includes/footer.php'; ?>
+include_once './inc/footer.php'; ?>
